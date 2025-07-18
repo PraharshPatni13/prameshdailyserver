@@ -20,8 +20,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: '*',
-        methods: ['GET', 'POST']
+        origin: 'https://prameshdailyserver.onrender.com',
+        methods: ['GET', 'POST'],
     }
 });
 
@@ -1147,5 +1147,5 @@ app.post('/api/calculate-commission', async (req, res) => {
 // === 🚀 Start Server ===
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on ${PORT}`);
 });
