@@ -18,9 +18,15 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 const server = http.createServer(app);
+// const io = socketIO(server, {
+//     cors: {
+//         origin: 'https://dataentry.prameshwealth.com',
+//         methods: ['GET', 'POST'],
+//     }
+// });
 const io = socketIO(server, {
     cors: {
-        origin: 'https://dataentry.prameshwealth.com',
+        origin: '*',
         methods: ['GET', 'POST'],
     }
 });
