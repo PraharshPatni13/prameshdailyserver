@@ -20,7 +20,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: 'https://prameshdailyserver.onrender.com',
+        origin: 'https://dataentry.prameshwealth.com',
         methods: ['GET', 'POST'],
     }
 });
@@ -121,7 +121,22 @@ app.use(compression({
     }
 }));
 
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://dataentry.prameshwealth.com'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    credentials: true
+}));
+
 app.use(useragent.express());
 // === 📋 Route Logger Middleware ===
 app.use((req, res, next) => {
