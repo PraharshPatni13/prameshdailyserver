@@ -29,13 +29,12 @@ const dropdownRoutes = require("./routes/dropdownRoutes")
 
 let db;
 
-const isProduction = process.env.NODE_ENV === 'production';
 // === ✅ MySQL Database Connection ===
 mysql.createConnection({
-    host: isProduction ? process.env.DB_HOST : 'localhost',
-    user: isProduction ? process.env.DB_USER : 'root',
-    password: isProduction ? process.env.DB_PASSWORD : '12345',
-    database: isProduction ? process.env.DB_NAME : 'prameshdataentry',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     port: process.env.DB_PORT || 3306,
 }).then((connection) => {
     db = connection;
